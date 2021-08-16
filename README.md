@@ -1,6 +1,9 @@
 # YTXI
 **YTXI is an extension for youtube-dl [(original youtube-dl repository)](https://github.com/ytdl-org/youtube-dl)**
 
+This is how the program looks after it is launched (a tooltip on top of your screen):
+> ![image](https://user-images.githubusercontent.com/77080875/129626445-61198c0a-1447-4226-896b-1b1d65191911.png)
+
 You need FFMPEG bin package and lame_enc.dll, download those from here:
 
 > - [FFMPEG](https://github.com/GyanD/codexffmpeg/releases/tag/4.4)
