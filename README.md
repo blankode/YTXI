@@ -6,8 +6,8 @@ This is how the program looks after it is launched (a tooltip on top of your scr
 
 You need FFMPEG bin package and lame_enc.dll, download those from here:
 
-> - [FFMPEG](https://github.com/GyanD/codexffmpeg/releases/tag/4.4)
-> - [lame_enc.dll](https://www.dll-files.com/lame_enc.dll.html)
+> - [FFMPEG](https://github.com/GyanD/codexffmpeg/releases/tag/4.4) (for the video formats)
+> - [lame_enc.dll](https://www.dll-files.com/lame_enc.dll.html) (for the mp3 format)
 
 After you finish setting it up the entire path should look like this :
 
