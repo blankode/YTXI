@@ -11,9 +11,7 @@
 #include <InetConstants.au3>
 #include <MsgBoxConstants.au3>
 #include <WinAPIFiles.au3>
-;Opt ("MustDeclareVars",1)
 $x = @DesktopWidth / 2.5
-$mp3config = "-o C:/%HOMEPATH%/Desktop/MP3/%(title)s.%(ext)s -i --extract-audio --audio-format mp3 --audio-quality 0"
 HotKeySet("{1}", "downloadmp3")
 HotKeySet("{2}", "downloadmp4")
 HotKeySet("{2}", "downloadhqmp4")
