@@ -1,5 +1,6 @@
 # YTXI
 **YTXI is an extension for youtube-dl [(original youtube-dl repository)](https://github.com/ytdl-org/youtube-dl)**
+**22.11.2022 updated to use YTB-DL [(original ytb-dl repository)](https://github.com/yt-dlp/yt-dlp)**
 
 This is how the program looks after it is launched (a tooltip on top of your screen):
 > ![image](https://user-images.githubusercontent.com/77080875/129626445-61198c0a-1447-4226-896b-1b1d65191911.png)
