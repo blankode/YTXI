@@ -4,7 +4,7 @@
    Author:         blankode
 
 	 Script Function:
-     youtube-dl pokayoke
+     youtube-dl pokayoke v2 using yt-dlp
 
 #ce ----------------------------------------------------------------------------
 #include <AutoItConstants.au3>
@@ -41,29 +41,29 @@ Func downloadmp3()
    send ("!d")
    send ("^c")
    $url = ClipGet()
-   Run("youtube-dl.exe"&" -o C:/%HOMEPATH%/Desktop/MP3/%(title)s.%(ext)s -i --extract-audio --audio-format mp3 --audio-quality 0 " & $url)
+   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/MP3/%(title)s.%(ext)s -i --extract-audio --audio-format mp3 --audio-quality 0 " & $url)
 EndFunc
 
 Func downloadmp4()
    send ("!d")
    send ("^c")
    $url = ClipGet()
-   Run("youtube-dl.exe"&" -o C:/%HOMEPATH%/Desktop/MP4/%(title)s.%(ext)s -i -f bestvideo[height<=480]+bestaudio/best[height<=480] " & $url)
+   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/MP4/%(title)s.%(ext)s -i -f bestvideo[height<=480]+bestaudio/best[height<=480] " & $url)
 EndFunc
 
 Func downloadhqmp4()
    send ("!d")
    send ("^c")
    $url = ClipGet()
-   Run("youtube-dl.exe"&" -o C:/%HOMEPATH%/Desktop/HQMP4/%(title)s.%(ext)s -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4 " & $url)
+   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/HQMP4/%(title)s.%(ext)s -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4 " & $url)
 EndFunc
 
 Func update()
    ToolTip("Do not use the program! I'm updating!", $x, 0)
 	; Save the downloaded file to the temporary folder.
-    Local $sFilePath = "youtube-dl.exe"
+    Local $sFilePath = "yt-dlp.exe"
     ; Download the file by waiting for it to complete. The option of 'get the file from the local cache' has been selected.
-    Local $iBytesSize = InetGet("https://youtube-dl.org/downloads/latest/youtube-dl.exe", $sFilePath, $INET_FORCERELOAD)
+    Local $iBytesSize = InetGet("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe", $sFilePath, $INET_FORCERELOAD)
    ToolTip("Program updated succesfully!", $x, 0)
    Sleep(3000)
    ToolTip("1 - MP3 | 2 - MP4 | 3 - HQMP4 | F8 - ON/OFF GUI | F9 - UPDATE | F10 - EXIT", $x, 0)
