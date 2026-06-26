@@ -6,6 +6,9 @@
 	 Script Function:
      youtube-dl pokayoke v2 using yt-dlp
 
+	Prerequisites:
+	winget install DenoLand.Deno
+
 #ce ----------------------------------------------------------------------------
 #include <AutoItConstants.au3>
 #include <InetConstants.au3>
@@ -14,7 +17,7 @@
 $x = @DesktopWidth / 2.5
 HotKeySet("{1}", "downloadmp3")
 HotKeySet("{2}", "downloadmp4")
-HotKeySet("{2}", "downloadhqmp4")
+HotKeySet("{3}", "downloadhqmp4")
 HotKeySet("{F8}", "hidegui")
 HotKeySet("{F9}", "update")
 HotKeySet("{F10}", "terminate")
@@ -38,32 +41,67 @@ Func hidegui()
  EndFunc
 
 Func downloadmp3()
-   send ("!d")
-   send ("^c")
-   $url = ClipGet()
-   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/MP3/%(title)s.%(ext)s -i --extract-audio --audio-format mp3 --audio-quality 0 " & $url)
+   Send("!d")
+   Sleep(100)
+   Send("^c")
+   Sleep(100)
+
+   Local $url = ClipGet()
+   Local $out = '"' & @DesktopDir & '\MP3\%(title)s.%(ext)s"'
+
+   DirCreate(@DesktopDir & "\MP3")
+
+   Local $cmd = '"' & @ScriptDir & '\yt-dlp.exe" ' & _
+      '--windows-filenames --no-playlist --remote-components ejs:github ' & _
+      '-o ' & $out & ' -i --extract-audio --audio-format mp3 --audio-quality 0 "' & $url & '"'
+
+   Run($cmd, @ScriptDir)
 EndFunc
+
 
 Func downloadmp4()
-   send ("!d")
-   send ("^c")
-   $url = ClipGet()
-   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/MP4/%(title)s.%(ext)s -i -f bestvideo[height<=480]+bestaudio/best[height<=480] " & $url)
+   Send("!d")
+   Sleep(100)
+   Send("^c")
+   Sleep(100)
+
+   Local $url = ClipGet()
+   Local $out = '"' & @DesktopDir & '\MP4\%(title)s.%(ext)s"'
+
+   DirCreate(@DesktopDir & "\MP4")
+
+   Local $cmd = '"' & @ScriptDir & '\yt-dlp.exe" ' & _
+      '--windows-filenames --no-playlist --remote-components ejs:github ' & _
+      '-o ' & $out & ' -i -f "bv*[height<=480]+ba/b[height<=480]/b" --merge-output-format mp4 "' & $url & '"'
+
+   Run($cmd, @ScriptDir)
 EndFunc
 
+
 Func downloadhqmp4()
-   send ("!d")
-   send ("^c")
-   $url = ClipGet()
-   Run("yt-dlp.exe"&" -o C:/%HOMEPATH%/Desktop/HQMP4/%(title)s.%(ext)s -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4 " & $url)
+   Send("!d")
+   Sleep(100)
+   Send("^c")
+   Sleep(100)
+
+   Local $url = ClipGet()
+   Local $out = '"' & @DesktopDir & '\HQMP4\%(title)s.%(ext)s"'
+
+   DirCreate(@DesktopDir & "\HQMP4")
+
+   Local $cmd = '"' & @ScriptDir & '\yt-dlp.exe" ' & _
+      '--windows-filenames --no-playlist --remote-components ejs:github ' & _
+      '-o ' & $out & ' -i -f "bv*+ba/b" --merge-output-format mp4 "' & $url & '"'
+
+   Run($cmd, @ScriptDir)
 EndFunc
 
 Func update()
    ToolTip("Do not use the program! I'm updating!", $x, 0)
-	; Save the downloaded file to the temporary folder.
-    Local $sFilePath = "yt-dlp.exe"
-    ; Download the file by waiting for it to complete. The option of 'get the file from the local cache' has been selected.
-    Local $iBytesSize = InetGet("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe", $sFilePath, $INET_FORCERELOAD)
+
+   Local $sFilePath = @ScriptDir & "\yt-dlp.exe"
+   InetGet("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe", $sFilePath, $INET_FORCERELOAD)
+
    ToolTip("Program updated succesfully!", $x, 0)
    Sleep(3000)
    ToolTip("1 - MP3 | 2 - MP4 | 3 - HQMP4 | F8 - ON/OFF GUI | F9 - UPDATE | F10 - EXIT", $x, 0)
